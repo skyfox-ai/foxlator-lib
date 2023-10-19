@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: "Install dependencies"
         run: ./bin/install-deps.sh
-      - name: "Build whel package"
+      - name: "Build wheel package"
         run: ./bin/build-package.sh
       - name: "Perform a smoke test"
         run: ./bin/smoke-test.sh
