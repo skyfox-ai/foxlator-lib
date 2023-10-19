@@ -10,7 +10,7 @@ get_part() {
 
 apply_version() {
     echo "$ - new version is:" $1
-    sed -ie "s/\(version = \"\)[^\"]*\"/\1$1\"/" $config_file
+    sed -i '' -e "s/\(version = \"\)[^\"]*\"/\1$1\"/" $config_file
 }
 
 if [ "$1" = '--build' ]; then
