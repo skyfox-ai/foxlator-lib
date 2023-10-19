@@ -16,6 +16,7 @@ jobs:
       - name: "Bump build number"
         if: github.ref == 'refs/heads/dev'
         run: |
+          git config --global user.email "skyfox.comp@gmail.com"
           git config --global user.name 'Skyfox.Builder'
           git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
           ./bin/bump-version.sh --build
