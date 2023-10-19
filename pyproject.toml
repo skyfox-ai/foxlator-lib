@@ -9,9 +9,11 @@ authors = [
   { name="Witold Haza", email="witekha3@gmail.com" },
   { name="Kacper Czyz", email="kacper.czyz@protonmail.com" },
 ]
+dependencies = [
+]
 description = "Library backend for foxlator"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",

@@ -1,5 +1,8 @@
 #!/bin/bash
 
-python3.11 -m pip install --upgrade build
+if [ -d ./dist ]; then
+    echo "$ - found ./dist directory, removing"
+    rm -rf ./dist
+fi
 
-python3.11 -m build
+python3.10 -m build

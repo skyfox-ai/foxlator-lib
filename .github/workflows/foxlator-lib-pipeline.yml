@@ -1,0 +1,15 @@
+name: foxlator-lib pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Install dependencies"
+        run: ./bin/install-deps.sh
+      - name: "Build whel package"
+        run: ./bin/build-package.sh
+      - name: "Perform a smoke test"
+        run: ./bin/smoke-test.sh
