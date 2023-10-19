@@ -13,3 +13,6 @@ jobs:
         run: ./bin/build-package.sh
       - name: "Perform a smoke test"
         run: ./bin/smoke-test.sh
+      - name: "Bump build number"
+        if: github.ref == 'refs/heads/dev'
+        run: ./bin/bump-version.sh --build

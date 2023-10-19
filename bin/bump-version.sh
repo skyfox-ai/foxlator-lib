@@ -10,7 +10,8 @@ get_part() {
 
 apply_version() {
     echo "$ - new version is:" $1
-    sed -i '' -e "s/\(version = \"\)[^\"]*\"/\1$1\"/" $config_file
+    version=$1
+    sed -i -e "s/\(version = \"\)[^\"]*\"/\1$1\"/" $config_file
 }
 
 if [ "$1" = '--build' ]; then
@@ -27,4 +28,11 @@ elif [ "$1" = '--major' ]; then
     apply_version "$(($n + 1)).0.0"
 else
     echo "$ - invalid argument!"
+    exit -1
 fi
+
+git config --global user.name 'Skyfox.Builder'
+git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
+git add $config_file
+git commit -m "Build "$version
+git push
