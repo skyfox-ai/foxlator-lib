@@ -8,5 +8,4 @@ sudo apt-get install -y python3.10 python3.10-distutils python3.10-venv
 echo "$ - installing pip"
 curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
 
-python3.10 -m pip install --upgrade build
-python3.10 -m pip install --upgrade twine
+python3.10 -m pip install --upgrade -r ./build-requirements.txt
