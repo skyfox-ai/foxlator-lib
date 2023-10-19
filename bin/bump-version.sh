@@ -32,5 +32,5 @@ else
 fi
 
 git add $config_file
-git commit -m "Build "$version
+git commit -m "Build notification - "$version
 git push
