@@ -15,4 +15,7 @@ jobs:
         run: ./bin/smoke-test.sh
       - name: "Bump build number"
         if: github.ref == 'refs/heads/dev'
-        run: ./bin/bump-version.sh --build
+        run: |
+          git config --global user.name 'Skyfox.Builder'
+          git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
+          ./bin/bump-version.sh --build

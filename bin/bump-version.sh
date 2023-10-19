@@ -31,8 +31,6 @@ else
     exit -1
 fi
 
-git config --global user.name 'Skyfox.Builder'
-git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
 git add $config_file
 git commit -m "Build "$version
 git push
