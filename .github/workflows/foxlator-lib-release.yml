@@ -24,7 +24,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
       - name: "Merge main with dev branch"
         run: |
-          git fetch
+          git fetch --unshallow
           git pull
           git checkout main
           git pull
