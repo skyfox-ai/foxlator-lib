@@ -25,11 +25,8 @@ jobs:
       - name: "Merge main with dev branch"
         run: |
           git fetch
-          git log -s
           git checkout main
-          git log -s
-          git pull origin dev
-          git merge dev
+          git pull origin dev --rebase
           git push
       - name: "Bump version"
         run: ./bin/bump-version.sh --${{ github.event.inputs.release_type }}
