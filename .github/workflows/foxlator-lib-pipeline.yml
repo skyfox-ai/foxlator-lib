@@ -5,6 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-20.04
+    environment:
+      name: foxlator-lib
+      url: https://pypi.org/p/foxlator-lib
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v2
       - name: "Install dependencies"
@@ -20,6 +25,8 @@ jobs:
           git config --global user.name 'Skyfox.Builder'
           git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
           ./bin/bump-version.sh --build
-      - name: "Deploy to pypi"
-        run: |
-          python3.10 -m twine upload ./dist/*
+      - name: Publish distribution 📦 to TestPyPI
+        if: github.ref == 'refs/heads/dev'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://pypi.org/p/foxlator-lib
