@@ -1,7 +1,6 @@
-name: foxlator-lib pipeline
+name: foxlator-lib smoke tests per push
 
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-20.04
