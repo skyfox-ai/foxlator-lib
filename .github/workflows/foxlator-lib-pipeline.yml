@@ -25,6 +25,5 @@ jobs:
           ./bin/bump-version.sh --build
       - name: Publish distribution 📦 to TestPyPI
         if: github.ref == 'refs/heads/dev'
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://pypi.org/p/foxlator-lib
+        run: |
+          python3.10 -m twine upload  dist/* -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_TOKEN }}
