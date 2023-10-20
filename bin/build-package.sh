@@ -5,4 +5,4 @@ if [ -d ./dist ]; then
     rm -rf ./dist
 fi
 
-python3.10 -m build
+python3.10 -m build 

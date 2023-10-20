@@ -14,8 +14,8 @@ apply_version() {
     sed -i -e "s/\(version = \"\)[^\"]*\"/\1$1\"/" $config_file
 }
 
-if [ "$1" = '--build' ]; then
-    echo "$ - bumping build"
+if [ "$1" = '--patch' ]; then
+    echo "$ - bumping patch"
     n=$(get_part 3)
     apply_version "$(get_part 1).$(get_part 2).$(($n + 1))"
 elif [ "$1" = '--minor' ]; then
