@@ -20,3 +20,6 @@ jobs:
           git config --global user.name 'Skyfox.Builder'
           git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
           ./bin/bump-version.sh --build
+      - name: "Deploy to pypi"
+        run: |
+          python3.10 -m twine upload ./dist/foxlator_lib.*
