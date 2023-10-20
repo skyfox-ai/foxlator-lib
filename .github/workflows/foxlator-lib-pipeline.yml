@@ -8,8 +8,6 @@ jobs:
     environment:
       name: foxlator-lib
       url: https://pypi.org/p/foxlator-lib
-    permissions:
-      id-token: write
     steps:
       - uses: actions/checkout@v2
       - name: "Install dependencies"
