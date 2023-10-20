@@ -25,7 +25,9 @@ jobs:
       - name: "Merge main with dev branch"
         run: |
           git fetch
+          git pull
           git checkout main
+          git pull
           git merge dev
           git push
       - name: "Bump version"
