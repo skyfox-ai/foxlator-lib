@@ -23,7 +23,7 @@ jobs:
           git config --global user.name 'Skyfox.Builder'
           git remote set-url origin https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
           ./bin/bump-version.sh --build
-      - name: Publish distribution 📦 to TestPyPI
+      - name: Release to PyPI
         if: github.ref == 'refs/heads/dev'
         run: |
           python3.10 -m twine upload  dist/* -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_TOKEN }}
