@@ -22,4 +22,4 @@ jobs:
           ./bin/bump-version.sh --build
       - name: "Deploy to pypi"
         run: |
-          python3.10 -m twine upload ./dist/foxlator_lib.*
+          python3.10 -m twine upload ./dist/*
