@@ -18,3 +18,5 @@ jobs:
         run: ./bin/build-package.sh
       - name: "Perform a smoke test"
         run: ./bin/smoke-test.sh
+      - name: "Run unit tests"
+        run: ./bin/run-tests.sh
