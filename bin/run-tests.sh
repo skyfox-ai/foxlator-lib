@@ -22,6 +22,13 @@ echo "$ - venv sourced, using: "$(which python3.10)
 if [ "$install_libs" = true ]; then
     echo "$ - installing requirements"
     python3.10 -m pip install -r ./test-requirements.txt
+
+    if ! [ -d ./dist/ ]; then
+        echo "$ - ERROR - couldn't find library distribution, you need to build it first"
+        exit -1
+    fi
+
+    python3.10 -m pip install ./dist/foxlator_lib*.whl --force-reinstall
     echo "$ - done"
 fi
 
