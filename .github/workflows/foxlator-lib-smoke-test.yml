@@ -7,9 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    environment:
-      name: foxlator-lib
-      url: https://pypi.org/p/foxlator-lib
     steps:
       - uses: actions/checkout@v2
       - name: "Install dependencies"
