@@ -4,16 +4,25 @@
 echo "$ - running unit tests"
 
 venv_path='./test-venv'
-install_libs=false
 
-if [ "$1" = '--update-requirements' ]; then 
-    install_libs=true 
-fi
+install_libs=false
+install_fll=false
+
+for var in "$@"
+do
+    if [ "$var" = '--update-requirements' ]; then 
+        install_libs=true 
+    elif [ "$var" = '--update-fll' ]; then
+        install_fll=true
+    fi
+done
+
 
 if ! [ -d $venv_path ]; then
     echo "$ - venv not found, will generate one"
     python3.10 -m venv $venv_path
     install_libs=true
+    install_fll=true
 fi
 
 source $venv_path/bin/activate
@@ -21,13 +30,17 @@ echo "$ - venv sourced, using: "$(which python3.10)
 
 if [ "$install_libs" = true ]; then
     echo "$ - installing requirements"
-    python3.10 -m pip install -r ./test-requirements.txt
+    python3.10 -m pip install -r ./test-requirements.txt 
+    echo "$ - done"
+fi
 
+if [ "$install_fll" = true ]; then
     if ! [ -d ./dist/ ]; then
         echo "$ - ERROR - couldn't find library distribution, you need to build it first"
         exit -1
     fi
 
+    echo "$ - installing fll"
     python3.10 -m pip install ./dist/foxlator_lib*.whl --force-reinstall
     echo "$ - done"
 fi

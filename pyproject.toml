@@ -10,6 +10,8 @@ authors = [
   { name="Kacper Czyz", email="kacper.czyz@protonmail.com" },
 ]
 dependencies = [
+    "ffmpeg",
+    "moviepy"
 ]
 description = "Library backend for foxlator"
 readme = "README.md"
