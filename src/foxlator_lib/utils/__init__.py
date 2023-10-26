@@ -1,6 +1,6 @@
 
 from .file_system import FileSystem
-from .error import BaseError
+from ..error import BaseError
 
 
 def get_version() -> str:
