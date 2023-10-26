@@ -1,7 +1,6 @@
 
 from .audio import AudioPath
-from .error import BaseError
-from .utils import FileSystem
+from .utils import FileSystem, BaseError
 
 
 class VideoError(BaseError):

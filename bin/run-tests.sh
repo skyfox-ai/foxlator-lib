@@ -6,23 +6,18 @@ echo "$ - running unit tests"
 venv_path='./test-venv'
 
 install_libs=false
-install_fll=false
 
 for var in "$@"
 do
     if [ "$var" = '--update-requirements' ]; then 
         install_libs=true 
-    elif [ "$var" = '--update-fll' ]; then
-        install_fll=true
     fi
 done
-
 
 if ! [ -d $venv_path ]; then
     echo "$ - venv not found, will generate one"
     python3.10 -m venv $venv_path
     install_libs=true
-    install_fll=true
 fi
 
 source $venv_path/bin/activate
@@ -34,17 +29,6 @@ if [ "$install_libs" = true ]; then
     echo "$ - done"
 fi
 
-if [ "$install_fll" = true ]; then
-    if ! [ -d ./dist/ ]; then
-        echo "$ - ERROR - couldn't find library distribution, you need to build it first"
-        exit -1
-    fi
-
-    echo "$ - installing fll"
-    python3.10 -m pip install ./dist/foxlator_lib*.whl --force-reinstall
-    echo "$ - done"
-fi
-
 test_files=$(ls ./test/*_tests.py 2>/dev/null)
 test_file_count=$(echo $test_files | grep -o "\.py" | wc -l)
 
@@ -52,5 +36,6 @@ if [ $test_file_count -eq 0 ]; then
     echo "$ - WARNING - didn't not find any test files, nothing to do here"
 else
     echo "$ - found" $test_file_count "test files, will run"
-    PYTHONPATH=./test python3.10 -m pytest --verbose $test_files
+    PYTHONPATH=./test python3.10 -m pytest --cov-config .coveragerc --cov=src --cov-report html --cov-report annotate --verbose $test_files
+    python3.10 -m coverage report
 fi

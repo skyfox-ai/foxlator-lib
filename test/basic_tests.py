@@ -1,6 +1,6 @@
 from utils import base
 
-import foxlator_lib as fll
+from src import foxlator_lib as fll
 
 
 class BasicTests(base.TestBase):
