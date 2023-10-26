@@ -1,6 +1,6 @@
 import unittest
 
-import foxlator_lib as fll
+from src import foxlator_lib as fll
 
 
 # any utility functions go here
