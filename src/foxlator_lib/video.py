@@ -11,7 +11,7 @@ class VideoError(BaseError):
 
 
 class Video(object):
-    known_extensions = ['mp4']
+    known_extensions = ['.mp4']
 
     def __init__(self, path: str, fs: FileSystem = FileSystem()):
         self.path = path
