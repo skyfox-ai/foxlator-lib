@@ -29,7 +29,7 @@ if [ "$install_libs" = true ]; then
     echo "$ - done"
 fi
 
-test_files=$(ls ./test/*_tests.py 2>/dev/null)
+test_files=$(ls ./test/test_*.py 2>/dev/null)
 test_file_count=$(echo $test_files | grep -o "\.py" | wc -l)
 
 if [ $test_file_count -eq 0 ]; then
