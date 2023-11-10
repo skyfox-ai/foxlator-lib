@@ -10,11 +10,11 @@ authors = [
   { name="Kacper Czyz", email="kacper.czyz@protonmail.com" },
 ]
 dependencies = [
-    "ffmpeg",
-    "moviepy",
-    "openai-whisper",
-    "scipy",
-    "pydub"
+    "ffmpeg >= 1.4",
+    "moviepy >= 1.0.3",
+    "openai-whisper >= 20231106",
+    "scipy>=1.11.3",
+    "pydub>=0.25.1"
 ]
 description = "Library backend for foxlator"
 readme = "README.md"
