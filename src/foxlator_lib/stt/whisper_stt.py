@@ -4,7 +4,6 @@ from typing import Dict
 import whisper  # type: ignore
 import moviepy.editor as mp  # type: ignore
 from foxlator_lib.audio import AudioPath
-from foxlator_lib.video import Video
 
 
 class WhisperSTT():
@@ -38,10 +37,4 @@ class WhisperSTT():
             language=self.language,
             fp16=torch.cuda.is_available(),
         )  # type: ignore
-        print(str(result['text']))
         return str(result['text'])
-
-
-# v = Video("/home/hazka/projects/foxlator-lib/.vscode/video.mp4")
-# WhisperSTT(language='pl', model='medium').audio_to_text(
-#     audio=v.get_audio_path())
