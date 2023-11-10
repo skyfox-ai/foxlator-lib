@@ -1,6 +1,4 @@
 
-from .file_system import FileSystem
-
 
 def get_version() -> str:
     import importlib.metadata
@@ -8,5 +6,5 @@ def get_version() -> str:
 
 
 __all__ = [
-    'FileSystem', 'get_version'
+    'get_version'
 ]
