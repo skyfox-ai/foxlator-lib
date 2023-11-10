@@ -28,9 +28,9 @@ class AudioPath(object):
                       quantize: Boolean | None = False,
                       nbytes: int = 2,
                       buffersize: int = 50000,
-                      ) -> NDArray[Any] | None:
+                      ) -> NDArray[Any]:
         """These methods are an override of the to_soundarray method from moviepy.AudioClip due to the problems with numpy. 
-        Transforms the sound into an array.
+        Transforms the sound into an stereo array.
 
         Args:
             tt (NDArray[np.floating[Any]] | None, optional): Time table. Defaults to None.
@@ -39,7 +39,6 @@ class AudioPath(object):
             nbytes (int, optional): number of bytes to encode the sound: 1 for 8bit sound, 2 for 16bit, 4 for 32bit sound. Defaults to 2.
             buffersize (int, optional): buffersize. Defaults to 50000.
         """
-
         if fps is None:
             fps = self.audio_file_clip.fps
         duration = float(self.audio_file_clip.duration)  # type: ignore
@@ -47,9 +46,8 @@ class AudioPath(object):
         max_duration = 1.0 * buffersize / fps
         if tt is None:
             if duration > max_duration:
-                xd = stacker(list(self.audio_file_clip.iter_chunks(fps=fps, quantize=quantize,
-                                                                   nbytes=2, chunksize=buffersize)))
-                return xd
+                return stacker(list(self.audio_file_clip.iter_chunks(fps=fps, quantize=quantize,
+                                                                     nbytes=2, chunksize=buffersize)))
             else:
                 tt = np.arange(0, duration, 1.0/fps)
         snd_array = self.audio_file_clip.get_frame(tt)
@@ -58,12 +56,10 @@ class AudioPath(object):
             inttype = {1: 'int8', 2: 'int16', 4: 'int32'}[nbytes]
             snd_array: NDArray[Any] = (
                 2**(8*nbytes-1)*snd_array).astype(inttype)
-            return snd_array
+        return snd_array
 
     def to_wave_soundarray(self, frame_rate: int = 16000, sample_width: int = 2, channels: int = 1, normalize: bool = False):
         audio_array = self.to_soundarray()
-        if audio_array is None:
-            raise AudioError("Could not convert audio to nparray")
         audio_bytesio = io.BytesIO()
         # convert array to wave bytesio
         write(audio_bytesio, self.audio_file_clip.fps, audio_array)
