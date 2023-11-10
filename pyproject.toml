@@ -6,12 +6,15 @@ build-backend = "hatchling.build"
 name = "foxlator-lib"
 version = "0.4.0"
 authors = [
-  { name="Witold Haza", email="witekhaface@gmail.com" },
+  { name="Witold Haza", email="witold.haza@gmail.com" },
   { name="Kacper Czyz", email="kacper.czyz@protonmail.com" },
 ]
 dependencies = [
-    "ffmpeg",
-    "moviepy"
+    "ffmpeg >= 1.4",
+    "moviepy >= 1.0.3",
+    "openai-whisper >= 20231106",
+    "scipy>=1.11.3",
+    "pydub>=0.25.1"
 ]
 description = "Library backend for foxlator"
 readme = "README.md"

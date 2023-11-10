@@ -1,12 +1,11 @@
 import pathlib
 import dataclasses
 import typing
-
+import os
 import moviepy.editor as mp  # type: ignore
 from moviepy.video.tools.subtitles import SubtitlesClip  # type: ignore
 
 from .audio import AudioPath
-from .utils import FileSystem
 from .error import BaseError
 
 
@@ -27,12 +26,11 @@ class VideoError(BaseError):
 class Video(object):
     known_extensions = ['.mp4']
 
-    def __init__(self, path: str, fs: FileSystem = FileSystem()):
+    def __init__(self, path: str):
         self.path = path
-        self.fs = fs
         self.extension = self._validate_extension(path)
 
-        if (not self.fs.is_file(path)):
+        if (not os.path.isfile(path)):
             raise VideoError(f"Video file: '{path}' doesn't exist")
         self.clip: mp.VideoFileClip = mp.VideoFileClip(self.path)
 
