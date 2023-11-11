@@ -7,7 +7,7 @@ import io
 from pydub import AudioSegment  # type: ignore
 from scipy.io.wavfile import write  # type: ignore
 from numpy.typing import NDArray
-from foxlator_lib.error import BaseError
+from .error import BaseError
 
 
 class AudioError(BaseError):

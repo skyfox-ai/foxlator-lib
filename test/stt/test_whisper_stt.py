@@ -1,4 +1,4 @@
-from foxlator_lib.stt.whisper_stt import WhisperSTT
+from src.foxlator_lib.stt.whisper_stt import WhisperSTT
 from unittest.mock import MagicMock, patch
 from utils import base
 
