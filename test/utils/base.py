@@ -5,7 +5,7 @@ import tempfile
 from moviepy.editor import AudioFileClip  # type: ignore
 from scipy.io.wavfile import write  # type: ignore
 import numpy as np
-from foxlator_lib.audio import AudioPath
+from src.foxlator_lib.audio import AudioPath
 
 # any utility functions go here
 
