@@ -2,7 +2,6 @@
 import torch
 from typing import Dict
 import whisper  # type: ignore
-import moviepy.editor as mp  # type: ignore
 from foxlator_lib.audio import AudioPath
 
 
@@ -37,4 +36,4 @@ class WhisperSTT():
             language=self.language,
             fp16=torch.cuda.is_available(),
         )  # type: ignore
-        return str(result['text'])
+        return str(result['segments'])
