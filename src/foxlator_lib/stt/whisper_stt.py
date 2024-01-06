@@ -1,11 +1,13 @@
 
 import torch
-from typing import Dict, List, TypedDict
+from typing import Dict, List
 import whisper  # type: ignore
 from foxlator_lib.audio import AudioPath
+from dataclasses import dataclass
 
 
-class WhisperSegment(TypedDict):
+@dataclass
+class WhisperSegment:
     id: int
     seek: int
     start: int
@@ -44,4 +46,5 @@ class WhisperSTT():
             language=self.language,
             fp16=torch.cuda.is_available(),
         )  # type: ignore
-        return result['segments']  # type: ignore
+        return [WhisperSegment(r['id'], r['seek'], r['start'], r['end'], r['text'])  # type: ignore
+                for r in result['segments']]
