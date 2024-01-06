@@ -1,9 +1,18 @@
 
 import torch
-from typing import Dict
+from typing import Dict, List
 import whisper  # type: ignore
-import moviepy.editor as mp  # type: ignore
 from foxlator_lib.audio import AudioPath
+from dataclasses import dataclass
+
+
+@dataclass
+class WhisperSegment:
+    id: int
+    seek: int
+    start: int
+    end: int
+    text: str
 
 
 class WhisperSTT():
@@ -30,11 +39,12 @@ class WhisperSTT():
         raise Exception(
             f'Not supported languages. Models available: {all_langs}')
 
-    def audio_to_text(self, audio: AudioPath) -> str:
+    def audio_to_text(self, audio: AudioPath) -> List[WhisperSegment]:
         result: Dict[str, str] = self.model.transcribe(  # type: ignore
             audio=audio.to_wave_soundarray(16000, 2, 1, True),
             task=None,
             language=self.language,
             fp16=torch.cuda.is_available(),
         )  # type: ignore
-        return str(result['text'])
+        return [WhisperSegment(r['id'], r['seek'], r['start'], r['end'], r['text'])  # type: ignore
+                for r in result['segments']]
