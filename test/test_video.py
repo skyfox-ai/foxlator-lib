@@ -2,7 +2,7 @@
 import tempfile
 from ddt import ddt, data  # type: ignore
 from unittest.mock import MagicMock, patch
-from foxlator_lib.video import AudioTextSegment, Video
+from src.foxlator_lib.video import AudioTextSegment, Video
 from utils.video_base import VideoBase
 from src import foxlator_lib as fll
 from pathlib import Path
