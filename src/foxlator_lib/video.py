@@ -5,7 +5,7 @@ from moviepy.video.tools.subtitles import SubtitlesClip  # type: ignore
 from pathlib import Path
 import logging
 
-from src.foxlator_lib.stt.whisper_stt import AudioTextSegment
+from .stt.whisper_stt import AudioTextSegment
 from .audio import AudioPath
 from .error import BaseError
 
