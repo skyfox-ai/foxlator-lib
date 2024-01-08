@@ -10,5 +10,5 @@ curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
 
 python3.10 -m pip install --upgrade -r ./build-requirements.txt
 
-echo "$ - fix for ImageMagick"
-sudo sed -i 's|<policy domain="path" rights="none" pattern="@*" />|<!--<policy domain="path" rights="none" pattern="@*" />-->|' /etc/ImageMagick-6/policy.xml
+echo "$ - fixing ImageMagick detection bug"
+sudo sed -i '/<policy domain="path" rights="none" pattern="@.*" \/>/d' /etc/ImageMagick-6/policy.xml
