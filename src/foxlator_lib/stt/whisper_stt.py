@@ -8,8 +8,6 @@ from dataclasses import dataclass
 
 @dataclass
 class AudioTextSegment:
-    id: int
-    seek: int
     start: int
     end: int
     text: str
@@ -50,5 +48,5 @@ class WhisperSTT():
             language=self.language,
             fp16=torch.cuda.is_available(),
         )  # type: ignore
-        return [AudioTextSegment(r['id'], r['seek'], r['start'], r['end'], r['text'])  # type: ignore
+        return [AudioTextSegment(r['start'], r['end'], r['text'])  # type: ignore
                 for r in result['segments']]
