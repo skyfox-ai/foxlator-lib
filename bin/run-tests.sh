@@ -29,6 +29,9 @@ if [ "$install_libs" = true ]; then
     echo "$ - done"
 fi
 
+python3.10 -m install moviepy[optional]
+sudo sed -i '/<policy domain="path" rights="none" pattern="@\*"/d' /etc/ImageMagick-6/policy.xml
+
 test_files=$(ls ./test/test_*.py 2>/dev/null)
 test_file_count=$(echo $test_files | grep -o "\.py" | wc -l)
 
