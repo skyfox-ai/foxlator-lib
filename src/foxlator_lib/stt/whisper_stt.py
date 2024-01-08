@@ -2,7 +2,7 @@
 import torch
 from typing import Dict, List, Optional
 import whisper  # type: ignore
-from foxlator_lib.audio import AudioPath
+from src.foxlator_lib.audio import AudioPath
 from dataclasses import dataclass
 
 
