@@ -1,10 +1,10 @@
-from utils import base
+from utils.audio_base import AudioBase
 import numpy as np
 import tempfile
 import os
 
 
-class AudioPathTests(base.TestBase):
+class AudioPathTests(AudioBase):
 
     def test_save_success(self):
         with tempfile.NamedTemporaryFile() as tmp:

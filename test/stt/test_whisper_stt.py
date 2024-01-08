@@ -1,15 +1,15 @@
 from src.foxlator_lib.stt.whisper_stt import WhisperSTT
 from unittest.mock import MagicMock, patch
-from utils import base
+from utils.audio_base import AudioBase
 
 
-class WhisperSTTTests(base.TestBase):
+class WhisperSTTTests(AudioBase):
 
     @patch('whisper.load_model')
     def test_init_default(self, _mock: MagicMock):
         whisper_stt = WhisperSTT()
         self.assertIsNotNone(whisper_stt.model)
-        self.assertIsNotNone(whisper_stt.language)
+        self.assertIsNone(whisper_stt.language)
 
     def test_init_correct_params(self):
         whisper_stt = WhisperSTT(language='pl', model='tiny')
