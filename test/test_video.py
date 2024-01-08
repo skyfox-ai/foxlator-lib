@@ -2,7 +2,7 @@
 import tempfile
 from ddt import ddt, data  # type: ignore
 from unittest.mock import MagicMock, patch
-from foxlator_lib.video import SubtitleFrame, Video
+from foxlator_lib.video import AudioTextSegment, Video
 from utils.video_base import VideoBase
 from src import foxlator_lib as fll
 from pathlib import Path
@@ -35,7 +35,7 @@ class VideoTests(VideoBase):
                 new_file = str(temp_file.name)
                 try:
                     video.apply_subtitles(
-                        [SubtitleFrame(0, 1, 'test')], Path(new_file))
+                        [AudioTextSegment(0, 0, 0, 1, 'test')], Path(new_file))
                 except Exception as e:
                     self.fail(f"Unexpected exception: {e}")
                 self.assertFalse(os.path.samefile(video_path, new_file))
@@ -44,7 +44,7 @@ class VideoTests(VideoBase):
         with self.test_video_file() as video_path:
             video = Video(video_path)
             output_file = video.apply_subtitles(
-                [SubtitleFrame(0, 1, 'test')], video_path)
+                [AudioTextSegment(0, 0, 0, 1, 'test')], video_path)
             self.assertTrue(os.path.exists(video_path))
             self.assertTrue(os.path.exists(output_file))
             self.assertFalse(os.path.samefile(video_path, output_file))
@@ -56,6 +56,6 @@ class VideoTests(VideoBase):
             with tempfile.TemporaryDirectory() as temp_dir:
                 save_dir = Path(temp_dir)
                 output_file = video.apply_subtitles(
-                    [SubtitleFrame(0, 1, 'test')], save_dir)
+                    [AudioTextSegment(0, 0, 0, 1, 'test')], save_dir)
                 self.assertEqual(Path(os.path.join(
                     save_dir, video_path.name)), output_file)
