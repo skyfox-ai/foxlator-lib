@@ -29,10 +29,6 @@ if [ "$install_libs" = true ]; then
     echo "$ - done"
 fi
 
-echo "$ - fixing ImageMagick detection bug"
-sudo apt-get install -y imagemagick libmagick++-dev
-sudo sed -i '/<policy domain="path" rights="none" pattern="@.*" \/>/d' /etc/ImageMagick-6/policy.xml
-
 test_files=$(ls ./test/test_*.py 2>/dev/null)
 test_file_count=$(echo $test_files | grep -o "\.py" | wc -l)
 
